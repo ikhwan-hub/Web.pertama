@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header dengan Dropdown - Versi Responsif</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(227, 227, 227);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      padding: 10px 20px;
+      color: white;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+    nav ul li:hover > a {
+      background-color: #444;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #7c9a22;
+      min-width: 150px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: black;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .container, .TentangSaya, .hubungi-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    .container img, .TentangSaya img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .text {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgb(10, 20, 20);
+    }
+    .highlight {
+      color: rgb(90, 81, 81);
+    }
+    .TabelPortofolio {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .TabelPortofolio table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .TabelPortofolio th, .TabelPortofolio td {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .TabelPortofolio th {
+      background-color: #7b9821;
+      color: #fff;
+    }
+    .TabelPortofolio tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .bukti-img {
+      width: 50px;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 0 3px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .bukti-img:hover {
+      transform: scale(3);
+      z-index: 2;
+    }
+    a {
+      color: #0099cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    form input, 
+    form textarea, 
+    form button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      background-color: #7b9821;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #5c7619;
+    }
+    .map-hubungi iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .container, .TentangSaya, .hubungi-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .container img, .TentangSaya img {
+        width: 80%;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        width: 100%;
+      }
+      nav ul li a {
+        padding: 10px;
+      }
+    }
+    /* Opini Berita */
+.opini-berita {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.opini-berita h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+.card-content a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-content a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive tambahan untuk Opini */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang Saya</a></li>
+        <li><a href="#portofolio">Portofolio</a></li>
+        <li class="dropdown">
+          <a href="#">Lainnya ▾</a>
+          <div class="dropdown-content">
+            <a href="https://www.instagram.com/waaan_05?igsh=MTV5bW42ejg5Nmd1aQ==" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61572284870402" target="_blank">Facebook</a>
+            <a href="https://www.tiktok.com/@thewaans?_t=ZS-8vtq2UVbf3X&_r=1" target="_blank">TikTok</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="beranda">
+    <div class="container">
+      <img src="ikhwan.png" alt="ikhwan">
+      <div class="text">
+        <h1><span class="highlight">Hallo! Perkanalkan</span> Saya adalah mahasiswa aktif jurusan Teknik Informatika yang memiliki minat dalam pengembangan teknologi, khususnya di bidang pemrograman web dan sistem informasi.</h1>
+      </div>
+    </div>
+  </section>
+
+  <section id="tentang">
+    <div class="TentangSaya">
+      <div class="text">
+        <h2><span class="highlight">Tentang Saya</span></h2>
+        <p>Perkenalkan nama saya A. Ikhwan Syahroni, lahir di Bojonegoro, 05 November 2004 tepatnya di Desa Sudu Kecamatan Gayam Kab. Bojonegoro. Saya adalah mahasiswa semester 2 jurusan Teknik Informatika di Universitas Nahdlatul Ulama Sunan Giri Bojonegoro.</p>
+      </div>
+      <img src="ikhwan2.jpg" alt="Foto Tentang Saya">
+    </div>
+  </section>
+
+  <section id="portofolio" class="TabelPortofolio">
+    <h2 class="highlight">Portofolio</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Kegiatan</th>
+          <th>Waktu</th>
+          <th>Bukti Kegiatan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Pelatihan Komputer</td>
+          <td>26 Maret 2024</td>
+          <td><img src="pelatihan.jpg" alt="Pelatihan Komputer" class="bukti-img"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Kursus Bahasa Inggris</td>
+          <td>26 Agustus 2023</td>
+          <td><img src="kursus.jpg" alt="Kursus Bahasa Inggris" class="bukti-img"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Karang Taruna</td>
+          <td>20 Agustus 2024</td>
+          <td><img src="karang taruna.jpg" alt="Karang Taruna" class="bukti-img"></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+<!--Opini berita-->
+<section class="opini-berita">
+  <h2>Opini </h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="Borobudur.jpg" alt="Berita 1" />
+      <div class="card-content">
+        <h3>Wisata Candi Borobudur</h3>
+        <p>Candi Borobudur (bahasa Jawa: ꦕꦟ꧀ꦝꦶꦧꦫꦧꦸꦝꦸꦂ, translit. Candhi Båråbudhur) adalah</p>
+        <a href="https://id.m.wikipedia.org/wiki/Borobudur">Baca Selengkapnya</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="ai.webp" alt="Berita 2" />
+      <div class="card-content">
+        <h3>Apakah AI berbahaya?</h3>
+        <p>Seiring berkembangnya AI menjadi lebih canggih dan meluas, suara-suara</p>
+        <a href="https://builtin.com/artificial-intelligence/risks-of-artificial-intelligence">Baca Selengkapnya</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="unugiri.jpg" alt="Berita 3" />
+      <div class="card-content">
+        <h3>Kenapa Harus Kuliah di UNUGIRI?</h3>
+        <p>Universitas Nahdlatul Ulama Sunan Giri adalah</p>
+        <a href="https://unugiri.ac.id/">Baca Selengkapnya</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="pertamix.jpg" alt="Berita 4" />
+      <div class="card-content">
+        <h3>Pertamax Oplosan? </h3>
+        <p>Pertamina diduga mencampur Pertamax dengan Pertalite. Ini sejumlah negara yang masih menggunakan BBM di bawah RON 92.</p>
+        <a href="https://www.tempo.co/ekonomi/kisruh-pertamax-oplosan-ini-negara-yang-pakai-bbm-di-bawah-ron-92-1213555">Baca Selengkapnya</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="menjaga.jpg" alt="Berita 5" />
+      <div class="card-content">
+        <h3>Pentingya Menjaga Lingkungan </h3>
+        <p>Cara Menjaga dan Memelihara Lingkungan Alam di Sekitar Kita</p>
+        <a href="https://disperkimta.bulelengkab.go.id/informasi/detail/artikel/cara-menjaga-dan-memelihara-lingkungan-alam-di-sekitar-kita-29">Baca Selengkapnya</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="kejujuran.jpg" alt="Berita 6" />
+      <div class="card-content">
+        <h3>Menanamkan kejujuran pada anak sejak dini!!</h3>
+        <p>Ayah, Bunda, dan Sobat PAUD, mengenalkan kejujuran kepada anak sejak usia dini sangat penting karena kejujuran merupakan nilai dasar dalam kehidupan sosial. Berikut adalah beberapa cara untuk mengenalkan kejujuran kepada anak sejak usia dini.</p>
+        <a href="https://disdikpora.bulelengkab.go.id/informasi/detail/artikel/26_mengenalkan-kejujuran-kepada-anak-sejak-usia-dini">Baca Selengkapnya</a>
+      </div>
+    </div>
+  </div>
+</section>
+  <section id="hubungi">
+    <h2 class="highlight" style="text-align:center;">Hubungi Saya</h2>
+    <div class="hubungi-container">
+      <div class="form-hubungi">
+        <form>
+          <label for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda">
+
+          <label for="email">Alamat Email</label>
+          <input type="email" id="email" name="email" placeholder="contoh@email.com">
+
+          <label for="subjek">Subjek</label>
+          <input type="text" id="subjek" name="subjek" placeholder="Apa yang ingin Anda tanyakan?">
+
+          <label for="pesan">Pesan Anda</label>
+          <textarea id="pesan" name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..."></textarea>
+
+          <button type="submit">Kirim</button>
+        </form>
+      </div>
+
+      <div class="map-hubungi" style="text-align:center;">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.580123442438!2d112.088535!3d-7.400641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78214de7f7b0f3%3A0x60cf235bf6b8df97!2sSudu%2C%20Kec.%20Gayam%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1714294958043!5m2!1sid!2sid"
+    width="100%"
+    height="400"
+    style="border:0; border-radius:10px;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  <br><br>
+
+  <a href="https://www.google.com/maps/place/Sudu,+Kec.+Gayam,+Kabupaten+Bojonegoro,+Jawa+Timur/" 
+     target="_blank"
+     style="display:inline-block;padding:10px 20px;background-color:#7b9821;color:white;border-radius:5px;text-decoration:none;font-weight:bold;">
+    Buka di Google Maps
+  </a>
+</div>
+      </div>
+    </div>
+  </section>
+<footer style="background-color:#333; color:white; text-align:center; padding:20px; margin-top:50px;">
+  <p>&copy; 2025 A. Ikhwan Syahroni. All rights reserved.</p>
+</footer>
+</body>
+</html>
